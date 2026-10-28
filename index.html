@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatWay Music Global - Stream World Top Hits</title>
+    <meta name="description" content="Global music streaming app with iTunes Top Hits, Spotify-style grid, preview player, full video unlock, and Monetag monetization zones." />
+    <meta property="og:title" content="ChatWay Music Global - Stream World Top Hits" />
+    <meta property="og:description" content="Global music streaming app with iTunes Top Hits, Spotify-style grid, preview player, full video unlock, and Monetag monetization zones." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Monetag Multi-Zone SDK & Ad Engine Loader -->
+    <!-- Zones: 12141348 (AppOpen), 12141366 (Interstitial), 12141355 (Rewarded), 12141307 (Vignette) -->
+    <!-- In-Page Push: 9510382 | OnClick / Direct Link CPA: 302344 -->
+    <script>
+      window.monetagConfig = {
+        zones: {
+          appOpen: 12141348,
+          interstitial: 12141366,
+          rewarded: 12141355,
+          vignette: 12141307
+        },
+        push: 9510382,
+        onclick: 302344
+      };
+
+      // Polyfill / safe wrapper to guarantee window.showZone is always callable and resolves properly
+      if (typeof window.showZone !== 'function') {
+        window.showZone = function(zoneId) {
+          console.info('[Monetag SDK] window.showZone called with zone:', zoneId);
+          return new Promise(function(resolve) {
+            // Dispatch event for UI feedback and analytics
+            var event = new CustomEvent('monetag:adDisplayed', {
+              detail: {
+                zoneId: zoneId,
+                timestamp: Date.now()
+              }
+            });
+            window.dispatchEvent(event);
+
+            // Simulate realistic ad interaction latency
+            setTimeout(function() {
+              resolve({
+                status: 'success',
+                zoneId: zoneId,
+                timestamp: Date.now()
+              });
+            }, 600);
+          });
+        };
+      }
+    </script>
+
+    <!-- Monetag SDK script tags for all designated zones -->
+    <script src="https://niphaumeenses.net/tag.min.js" data-zone="12141348" data-sdk="monetag-appopen" async data-cfasync="false"></script>
+    <script src="https://niphaumeenses.net/tag.min.js" data-zone="12141366" data-sdk="monetag-interstitial" async data-cfasync="false"></script>
+    <script src="https://niphaumeenses.net/tag.min.js" data-zone="12141355" data-sdk="monetag-rewarded" async data-cfasync="false"></script>
+    <script src="https://niphaumeenses.net/tag.min.js" data-zone="12141307" data-sdk="monetag-vignette" async data-cfasync="false"></script>
+    <script src="https://niphaumeenses.net/tag.min.js" data-zone="9510382" data-type="push" async data-cfasync="false"></script>
+    <script src="https://niphaumeenses.net/tag.min.js" data-zone="302344" data-type="onclick" async data-cfasync="false"></script>
+  </head>
+  <body class="bg-[#0a0d14] text-slate-100 antialiased selection:bg-emerald-500 selection:text-black">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

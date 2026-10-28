@@ -1,0 +1,6 @@
+{
+  "name": "ChatWay Music Global",
+  "description": "Global music streaming app with iTunes Top Hits, Spotify-style grid, preview player, full video unlock, and Monetag monetization zones.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
